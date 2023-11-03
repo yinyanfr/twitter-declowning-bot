@@ -1,0 +1,40 @@
+{
+  "name": "twitter-declowing-bot",
+  "version": "0.0.1",
+  "description": "The circus is coming to town.",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "NODE_ENV=development ts-node src/index.ts",
+    "lint": "eslint --ext .ts,.tsx ./src",
+    "build": "npm run lint && tsc",
+    "clean": "rm -rf dist/",
+    "prepublishOnly": "tsc",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.6.3",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "node-telegram-bot-api": "^0.64.0"
+  }
+}
