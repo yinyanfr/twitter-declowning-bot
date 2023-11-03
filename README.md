@@ -1,6 +1,12 @@
-# twitter-declowing-bot
+# twitter-declowning-bot
 
-The circus is coming to town.
+![license](https://img.shields.io/github/l/twitter-declowning-bot.svg?style=flat-square)
+![size](https://img.shields.io/github/repo-size/yinyanfr/twitter-declowning-bot?style=flat-square)
+[![GitHub release](https://img.shields.io/github/release/yinyanfr/twitter-declowning-bot.svg?style=flat-square)](https://github.com/yinyanfr/twitter-declowning-bot/releases/latest)
+
+A Telegram Bot that reacts to Twitter post links and send the photos and videos back.
+
+[Demo](https://t.me/twitter_declowning_bot)
 
 ## :broken_heart: TL;DR: What's the problem with Twitter and Telegram?
 
@@ -16,7 +22,11 @@ Even the preview fixers can do little to this situation, so here comes the `twit
 
 ## :green_book: Quick Start
 
-### 1. Clone this repo
+### 1. Download the latest release
+
+You can download the latest release here: [Releases](https://github.com/yinyanfr/twitter-declowning-bot/releases)
+
+Or you can clone the repo:
 
 ```bash
 git clone https://github.com/yinyanfr/twitter-declowing-bot.git

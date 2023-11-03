@@ -37,7 +37,7 @@ bot.on('message', async msg => {
           height: e.height,
           caption: index === 0 ? caption : undefined,
           duration: e.duration,
-          thumbnail: e.thumbnail_url ? e.thumbnail_url : undefined,
+          thumbnail: e.thumbnail_url,
           parse_mode: 'HTML',
         }));
         await bot.sendMediaGroup(chatId, inputMedia, {
