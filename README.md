@@ -1,8 +1,10 @@
 # twitter-declowning-bot
 
-![license](https://img.shields.io/github/l/twitter-declowning-bot.svg?style=flat-square)
+![license](https://img.shields.io/github/license/yinyanfr/twitter-declowning-bot.svg?style=flat-square)
 ![size](https://img.shields.io/github/repo-size/yinyanfr/twitter-declowning-bot?style=flat-square)
 [![GitHub release](https://img.shields.io/github/release/yinyanfr/twitter-declowning-bot.svg?style=flat-square)](https://github.com/yinyanfr/twitter-declowning-bot/releases/latest)
+
+English | [中文](./README.zh-Hans.md)
 
 A Telegram Bot that reacts to Twitter post links and send the photos and videos back.
 
@@ -10,7 +12,7 @@ A Telegram Bot that reacts to Twitter post links and send the photos and videos 
 
 ## :broken_heart: TL;DR: What's the problem with Twitter and Telegram?
 
-As we all know that Twitter has becoming a clown's playground, a recent update of Telegram has taken away all the fun.
+As we all know that Twitter has become a clown's playground, a recent update of Telegram has taken away all the fun.
 
 Previously you could simply paste a link to a Twitter post, Telegram will show a preview with its image. Now the mechanic has changes so that only a cropped thumbnail image will be shown, and users are directed to the Twitter post URL instead of being able to view the image.
 
@@ -19,6 +21,16 @@ Even the preview fixers can do little to this situation, so here comes the `twit
 ## :star2: What does this bot do?
 
 `twitter-declowing-bot` is a telegram bot that does one single thing, read the Twitter post URLs and send the media back to the chat. Add the bot to your chat group and it's all done.
+
+## :framed_picture: Gallery
+
+Twitter post that contains multiple pictures:
+
+![Twitter post that contains multiple pictures](https://i.ibb.co/F3fqSzL/2023-11-03-16-58-43.png)
+
+Twitter post that contains video:
+
+![Twitter post that contains video](https://i.ibb.co/QNDdY9S/2023-11-03-16-58-59.png)
 
 ## :green_book: Quick Start
 
