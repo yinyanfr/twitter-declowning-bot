@@ -1,2 +1,50 @@
 # twitter-declowing-bot
+
 The circus is coming to town.
+
+## :broken_heart: TL;DR: What's the problem with Twitter and Telegram?
+
+As we all know that Twitter has becoming a clown's playground, a recent update of Telegram has taken away all the fun.
+
+Previously you could simply paste a link to a Twitter post, Telegram will show a preview with its image. Now the mechanic has changes so that only a cropped thumbnail image will be shown, and users are directed to the Twitter post URL instead of being able to view the image.
+
+Even the preview fixers can do little to this situation, so here comes the `twitter-declowing-bot`.
+
+## :star2: What does this bot do?
+
+`twitter-declowing-bot` is a telegram bot that does one single thing, read the Twitter post URLs and send the media back to the chat. Add the bot to your chat group and it's all done.
+
+## :green_book: Quick Start
+
+### 1. Clone this repo
+
+```bash
+git clone https://github.com/yinyanfr/twitter-declowing-bot.git
+```
+
+### 2. Install dependencies
+
+```bash
+npm i
+```
+
+### 3. Add your bot token to `src/credentials.json`
+
+```json
+{
+  "botToken": "YOUR_BOT_TOKEN",
+  "UA": "TwitterDeclowingBot/0.0.1"
+}
+```
+
+### 4. Build and deploy
+
+```bash
+npm run build
+```
+
+You can find the production build at `dist/`
+
+## :information_source: Credits
+
+This project uses the [Status Fetch API](https://github.com/FixTweet/FixTweet/wiki/Status-Fetch-API) provided by [FixTweet](https://github.com/FixTweet/FixTweet).
