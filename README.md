@@ -16,11 +16,11 @@ As we all know that Twitter has become a clown's playground, a recent update of 
 
 Previously you could simply paste a link to a Twitter post, Telegram will show a preview with its image. Now the mechanic has changes so that only a cropped thumbnail image will be shown, and users are directed to the Twitter post URL instead of being able to view the image.
 
-Even the preview fixers can do little to this situation, so here comes the `twitter-declowing-bot`.
+Even the preview fixers can do little to this situation, so here comes the `twitter-declowning-bot`.
 
 ## :star2: What does this bot do?
 
-`twitter-declowing-bot` is a telegram bot that does one single thing, read the Twitter post URLs and send the media back to the chat. Add the bot to your chat group and it's all done.
+`twitter-declowning-bot` is a telegram bot that does one single thing, read the Twitter post URLs and send the media back to the chat. Add the bot to your chat group and it's all done.
 
 ## :framed_picture: Gallery
 
@@ -55,7 +55,7 @@ npm i
 ```json
 {
   "botToken": "YOUR_BOT_TOKEN",
-  "UA": "TwitterDeclowingBot/0.0.1"
+  "UA": "TwitterDeclowningBot/0.1.1"
 }
 ```
 

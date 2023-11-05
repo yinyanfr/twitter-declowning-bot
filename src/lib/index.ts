@@ -1,6 +1,12 @@
 import { join } from 'node:path';
 import winston from 'winston';
 
+export enum ERROR_CODE {
+  SLOWDOWN = 'SLOWDOWN',
+  INVALID_INPUT = 'INVALID_INPUT',
+  NOT_FOUND = 'NOT_FOUND',
+}
+
 export const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),

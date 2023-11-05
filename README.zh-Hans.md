@@ -55,7 +55,7 @@ npm i
 ```json
 {
   "botToken": "YOUR_BOT_TOKEN",
-  "UA": "TwitterDeclownBot/0.0.1"
+  "UA": "TwitterDeclowningBot/0.1.1"
 }
 ```
 

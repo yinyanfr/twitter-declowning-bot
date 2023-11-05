@@ -20,7 +20,7 @@ export async function getTweetStatus(tweetId: string | number) {
       text,
       media: media.all,
       altText,
-      caption: `<a href="${url}" rel="noopener noreferrer"><b>${author?.name}</b></a>:\n\n${text}${
+      caption: `<a href="${url}" rel="noopener noreferrer"><b>${author?.name}</b></a><b>：</b>\n\n${text}${
         altText ? `\n\n${altText}` : ''
       }`,
     };

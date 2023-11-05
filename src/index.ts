@@ -1,4 +1,4 @@
-import TelegramBot, { InputMedia } from 'node-telegram-bot-api';
+import TelegramBot, { type InputMedia } from 'node-telegram-bot-api';
 import { botToken } from './credentials.json';
 import { logger } from './lib';
 import { getTweetStatus } from './services';
@@ -25,10 +25,10 @@ bot.on('message', async msg => {
   );
   const tweetId = match?.[2];
   if (tweetId) {
-    const tweetStatus = await getTweetStatus(tweetId);
-    const { media, caption } = tweetStatus;
-    console.log(media);
     try {
+      const tweetStatus = await getTweetStatus(tweetId);
+      const { media, caption } = tweetStatus;
+
       if (media?.length > 1) {
         const inputMedia: InputMedia[] = media.map((e, index) => ({
           type: e.type as 'video',
@@ -60,10 +60,16 @@ bot.on('message', async msg => {
         }
       }
       return logger.info(
-        `${uid} - ${first_name} ${last_name} shared ${tweetId}.`,
+        `${uid} - ${first_name} ${last_name ?? ''} shared ${tweetId}.`,
       );
     } catch (error) {
-      await bot.sendMessage(chatId, (error as Error)?.message ?? '未知错误');
+      if ((error as Error)?.message === 'Request failed with status code 404') {
+        await bot.sendMessage(chatId, `未找到贴文` ?? '未知错误', {
+          reply_to_message_id: message_id,
+        });
+      } else {
+        await bot.sendMessage(chatId, (error as Error)?.message ?? '未知错误');
+      }
       return logger.error((error as Error)?.message ?? error);
     }
   }
