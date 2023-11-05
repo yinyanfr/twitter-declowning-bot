@@ -1,6 +1,6 @@
 {
   "name": "twitter-declowing-bot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The circus is coming to town.",
   "main": "dist/index.js",
   "scripts": {
