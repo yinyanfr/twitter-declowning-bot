@@ -1,6 +1,6 @@
 {
   "name": "twitter-declowing-bot",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The circus is coming to town.",
   "main": "dist/index.js",
   "scripts": {
@@ -37,6 +37,7 @@
   "dependencies": {
     "axios": "^1.6.0",
     "node-telegram-bot-api": "^0.64.0",
-    "winston": "^3.11.0"
+    "winston": "^3.11.0",
+    "xss": "^1.0.14"
   }
 }

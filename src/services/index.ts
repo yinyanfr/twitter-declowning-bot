@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { UA } from '../credentials.json';
+import xss from 'xss';
 
 const request = axios.create({
   baseURL: 'https://api.fxtwitter.com/',
@@ -18,10 +19,12 @@ export async function getTweetStatus(tweetId: string | number) {
       url,
       authorName: author?.name,
       text,
-      media: media.all,
+      media: media?.all,
       altText,
-      caption: `<a href="${url}" rel="noopener noreferrer"><b>${author?.name}</b></a><b>：</b>\n\n${text}${
-        altText ? `\n\n${altText}` : ''
+      caption: `<a href="${url}" rel="noopener noreferrer"><b>${xss(
+        author?.name,
+      )}</b></a><b>：</b>\n\n${xss(text)}${
+        altText ? `\n\n${xss(altText)}` : ''
       }`,
     };
   }
