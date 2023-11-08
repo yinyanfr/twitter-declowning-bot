@@ -36,7 +36,7 @@ bot.on('message', async msg => {
           width: e.width,
           height: e.height,
           caption: index === 0 ? caption : undefined,
-          duration: e.duration,
+          duration: e.duration ? Math.ceil(e.duration) : undefined,
           thumbnail: e.thumbnail_url,
           parse_mode: 'HTML',
         }));
@@ -58,6 +58,12 @@ bot.on('message', async msg => {
             parse_mode: 'HTML',
           });
         }
+      } else {
+        await bot.sendMessage(chatId, caption, {
+          reply_to_message_id: message_id,
+          parse_mode: 'HTML',
+          disable_web_page_preview: true,
+        });
       }
       return logger.info(
         `${uid} - ${first_name} ${last_name ?? ''} shared ${tweetId}.`,
