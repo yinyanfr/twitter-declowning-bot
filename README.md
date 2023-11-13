@@ -18,9 +18,16 @@ Previously you could simply paste a link to a Twitter post, Telegram will show a
 
 Even the preview fixers can do little to this situation, so here comes the `twitter-declowning-bot`.
 
-## :star2: What does this bot do?
+## :high_brightness: What does this bot do?
 
 `twitter-declowning-bot` is a telegram bot that does one single thing, read the Twitter post URLs and send the media back to the chat. Add the bot to your chat group and it's all done.
+
+## :star2: Features
+
+- No login / API key required
+- Supports Tweet posts that contains multiple media
+- Supports videos
+- Supports spoiler mask
 
 ## :framed_picture: Gallery
 
@@ -66,6 +73,10 @@ npm run build
 ```
 
 You can find the production build at `dist/`
+
+## :bookmark: Known Issues
+
+- The bot cannot display twitter media labelled "gif" as video, not even labelled as "video", this may due to Telegram's bug.
 
 ## :information_source: Credits
 

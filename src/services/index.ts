@@ -13,7 +13,7 @@ export async function getTweetStatus(tweetId: string | number) {
   const data = result?.data as APIResult;
   const tweet = data?.tweet;
   if (data?.code === 200 && tweet) {
-    const { url, author, text, media } = tweet;
+    const { url, author, text, media, possibly_sensitive } = tweet;
     const altText = media?.all?.[0]?.altText;
     return {
       url,
@@ -21,6 +21,7 @@ export async function getTweetStatus(tweetId: string | number) {
       text,
       media: media?.all,
       altText,
+      possibly_sensitive,
       caption: `<a href="${url}" rel="noopener noreferrer"><b>${xss(
         author?.name,
       )}</b></a><b>：</b>\n\n${xss(text)}${
