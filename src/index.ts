@@ -27,11 +27,11 @@ bot.on('message', async msg => {
   if (tweetId) {
     try {
       const tweetStatus = await getTweetStatus(tweetId);
-      const { media, caption } = tweetStatus;
+      const { media, caption, possibly_sensitive } = tweetStatus;
 
       if (media?.length > 1) {
         const inputMedia: InputMedia[] = media.map((e, index) => ({
-          type: e.type as 'video',
+          type: e.type === 'video' ? 'video' : 'photo',
           media: e.url,
           width: e.width,
           height: e.height,
@@ -39,6 +39,7 @@ bot.on('message', async msg => {
           duration: e.duration ? Math.ceil(e.duration) : undefined,
           thumbnail: e.thumbnail_url,
           parse_mode: 'HTML',
+          has_spoiler: possibly_sensitive ?? false,
         }));
         await bot.sendMediaGroup(chatId, inputMedia, {
           reply_to_message_id: message_id,
@@ -50,12 +51,14 @@ bot.on('message', async msg => {
             reply_to_message_id: message_id,
             caption,
             parse_mode: 'HTML',
+            has_spoiler: possibly_sensitive ?? false,
           });
         } else {
           await bot.sendPhoto(chatId, e.url, {
             reply_to_message_id: message_id,
             caption,
             parse_mode: 'HTML',
+            has_spoiler: possibly_sensitive ?? false,
           });
         }
       } else {

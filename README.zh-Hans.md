@@ -18,9 +18,16 @@
 
 即使是预览修复工具对这种情况也无能为力，这就是 `twitter-declowning-bot` 的用武之地。
 
-## :star2: 这个机器人有什么作用？
+## :high_brightness: 这个机器人有什么作用？
 
 `twitter-declowning-bot` 是一个 Telegram 机器人，只执行一个任务，即读取 Twitter 贴文的 URL 并将媒体发送回聊天。将机器人添加到您的聊天群组即可。
+
+## :star2: 特征
+
+- 无需登录，无需 API Key
+- 支持包含多项媒体的推文
+- 支持视频
+- 支持敏感内容打马
 
 ## :framed_picture: 截图
 
@@ -66,6 +73,10 @@ npm run build
 ```
 
 您可以在 `dist/` 目录中找到编译后的版本。
+
+## :bookmark: 已知问题
+
+- 无法以视频显示被标记为 gif 的媒体，这可能是由于 Telegram API 的 bug
 
 ## :information_source: 致谢
 
