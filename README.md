@@ -8,6 +8,8 @@ English | [中文](./README.zh-Hans.md)
 
 A Telegram Bot that reacts to Twitter post links and send the photos and videos back.
 
+Now supports Instagram as well.
+
 [Demo](https://t.me/twitter_declowning_bot)
 
 ## :broken_heart: TL;DR: What's the problem with Twitter and Telegram?
