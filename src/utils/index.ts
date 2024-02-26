@@ -28,14 +28,12 @@ async function getPostInfo(postId: string) {
   const reader = await readFile(postPath);
   const data = JSON.parse(reader.toString()) as InstaloaderData;
   const { owner, display_resources, edge_sidecar_to_children } = data.node;
-  const media = [
-    display_resources[display_resources.length - 1],
-    ...(edge_sidecar_to_children?.edges?.length
-      ? edge_sidecar_to_children.edges.map(
-          e => e.node.display_resources[e.node.display_resources.length - 1],
-        )
-      : []),
-  ];
+
+  const media = edge_sidecar_to_children?.edges?.length
+    ? edge_sidecar_to_children.edges.map(
+        e => e.node.display_resources[e.node.display_resources.length - 1],
+      )
+    : [display_resources[display_resources.length - 1]];
   return {
     author: owner?.full_name,
     caption: `<a href="https://www.instagram.com/p/${postId}" rel="noopener noreferrer"><b>${xss(

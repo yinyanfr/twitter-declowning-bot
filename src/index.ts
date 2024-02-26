@@ -1,6 +1,6 @@
 import TelegramBot, { type InputMedia } from 'node-telegram-bot-api';
 import { botToken } from './credentials.json';
-import { logger } from './lib';
+import { logger, splitArrayByTen } from './lib';
 import { getTweetStatus } from './services';
 import { instagramScraper } from './utils';
 
@@ -11,6 +11,25 @@ if (!botToken) {
 
 const bot = new TelegramBot(botToken, { polling: true });
 logger.info('Bot running.');
+
+async function sendMedias(
+  media: DisplayResource2[],
+  caption: string,
+  chatId: number,
+  message_id: number,
+) {
+  const inputMedia: InputMedia[] = media.map((e, index) => ({
+    type: 'photo',
+    media: e.src,
+    width: e.config_width,
+    height: e.config_height,
+    caption: index === 0 ? caption : undefined,
+    parse_mode: 'HTML',
+  }));
+  await bot.sendMediaGroup(chatId, inputMedia, {
+    reply_to_message_id: message_id,
+  });
+}
 
 bot.on('message', async msg => {
   const { id: uid, first_name, last_name } = msg.from ?? {};
@@ -102,17 +121,14 @@ bot.on('message', async msg => {
           parse_mode: 'HTML',
         });
       } else {
-        const inputMedia: InputMedia[] = media.map((e, index) => ({
-          type: 'photo',
-          media: e.src,
-          width: e.config_width,
-          height: e.config_height,
-          caption: index === 0 ? caption : undefined,
-          parse_mode: 'HTML',
-        }));
-        await bot.sendMediaGroup(chatId, inputMedia, {
-          reply_to_message_id: message_id,
-        });
+        if (media.length <= 10) {
+          await sendMedias(media, caption, chatId, message_id);
+        } else {
+          const queue = splitArrayByTen(media);
+          for (const node of queue) {
+            await sendMedias(node, caption, chatId, message_id);
+          }
+        }
       }
       return logger.info(
         `${uid} - ${first_name} ${last_name ?? ''} shared ${instagramPostId}.`,
