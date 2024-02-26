@@ -37,3 +37,11 @@ if (process.env.NODE_ENV === 'development') {
     }),
   );
 }
+
+export function splitArrayByTen<T>(array: T[]) {
+  const result: T[][] = [];
+  for (let i = 0; i < array.length; i += 10) {
+    result.push(array.slice(i, i + 10));
+  }
+  return result;
+}
