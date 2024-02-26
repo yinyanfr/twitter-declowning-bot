@@ -2,6 +2,7 @@ import TelegramBot, { type InputMedia } from 'node-telegram-bot-api';
 import { botToken } from './credentials.json';
 import { logger } from './lib';
 import { getTweetStatus } from './services';
+import { instagramScraper } from './utils';
 
 if (!botToken) {
   logger.error('No token.');
@@ -20,10 +21,10 @@ bot.on('message', async msg => {
     return 0;
   }
 
-  const match = text.match(
+  const twitterMatch = text.match(
     /https:\/\/(twitter|x)\.com\/[^/]+\/status\/([0-9]+)/,
   );
-  const tweetId = match?.[2];
+  const tweetId = twitterMatch?.[2];
   if (tweetId) {
     try {
       const tweetStatus = await getTweetStatus(tweetId);
@@ -70,6 +71,51 @@ bot.on('message', async msg => {
       }
       return logger.info(
         `${uid} - ${first_name} ${last_name ?? ''} shared ${tweetId}.`,
+      );
+    } catch (error) {
+      if ((error as Error)?.message === 'Request failed with status code 404') {
+        await bot.sendMessage(chatId, `未找到贴文` ?? '未知错误', {
+          reply_to_message_id: message_id,
+        });
+      } else {
+        await bot.sendMessage(chatId, (error as Error)?.message ?? '未知错误');
+      }
+      return logger.error((error as Error)?.message ?? error);
+    }
+  }
+
+  // https://www.instagram.com/p/postId
+  const instagramMatch = text.match(
+    /https:\/\/www\.instagram\.com\/p\/([^/?&]+)/,
+  );
+  const instagramPostId = instagramMatch?.[1];
+  if (instagramPostId) {
+    try {
+      const postInfo = await instagramScraper(instagramPostId);
+      const { caption, media } = postInfo;
+
+      if (media.length === 1) {
+        const e = media[0];
+        await bot.sendPhoto(chatId, e.src, {
+          reply_to_message_id: message_id,
+          caption,
+          parse_mode: 'HTML',
+        });
+      } else {
+        const inputMedia: InputMedia[] = media.map((e, index) => ({
+          type: 'photo',
+          media: e.src,
+          width: e.config_width,
+          height: e.config_height,
+          caption: index === 0 ? caption : undefined,
+          parse_mode: 'HTML',
+        }));
+        await bot.sendMediaGroup(chatId, inputMedia, {
+          reply_to_message_id: message_id,
+        });
+      }
+      return logger.info(
+        `${uid} - ${first_name} ${last_name ?? ''} shared ${instagramPostId}.`,
       );
     } catch (error) {
       if ((error as Error)?.message === 'Request failed with status code 404') {

@@ -4,7 +4,7 @@ import xss from 'xss';
 
 const request = axios.create({
   baseURL: 'https://api.fxtwitter.com/',
-  timeout: 2000,
+  timeout: 5000,
   headers: { 'User-Agent': UA },
 });
 
